@@ -41,7 +41,7 @@ async def posts(request: Request) -> HTMLResponse:
 
 @app.post("/post")
 async def add_post(post: UserPost, request: Request) -> HTMLResponse:
-    post =(Post(user_id=user_id, **post.model_dump()))
+    post =(Post(post_title=post.post_title, post_text=post.post_text, user_id=user_id))
     insert_post(connection, post)
     posts = get_post(connection)
     return templates.TemplateResponse("./posts.html", context={"request": request, "posts": posts})

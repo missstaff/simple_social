@@ -1,37 +1,45 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Simple Social Media</title>
-  </head>
 
-  <body>
-    <h1>Simple Social Media</h1>
-    <form
-      hx-post="/post"
-      hx-trigger="submit"
-      hx-target="#post"
-      hx-swap="innerHTML"
-      hx-ext="json-enc"
-    >
-      <label>Post Title</label>
-      <input type="text" name="post_title" />
-      <label>Post</label>
-      <input type="text" name="post_text" />
-      <input type="submit" value="Submit" />
-    </form>
-    <div id="post" hx-trigger="load" hx-get="/posts" hx-swap="innerHTML">
-      <h3>Posts</h3>
-      <div id="post"></div>
-    
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@1.0.2/css/bulma.min.css">
+  <title>Simple Social Media</title>
+</head>
+
+<body>
+  <div class="columns">
+    <div class="column is-half is-offset-one-quarter">
+      <div class="card">
+        <div class="card-header">
+          <p class="card-header-title">
+            Simple Social Media
+          </p>
+        </div>
+        <div class="card-content">
+          <form hx-post="/post" hx-trigger="submit" hx-target="#posts" hx-swap="innerHTML" hx-ext="json-enc">
+            <label class="label">Post Title</label>
+            <input class="input" type="text" name="post_title" />
+            <label class="label">Post</label>
+            <input class="input" type="text" name="post_text" />
+            <input class="button" type="submit" value="Submit" />
+          </form>
+        </div>
+      </div>
+
+
+      <div id="posts" hx-trigger="load" hx-get="/posts" hx-swap="innerHTML">
+      </div>
     </div>
+  </div>
 
-    <script
-      src="https://unpkg.com/htmx.org@2.0.3"
-      integrity="sha384-0895/pl2MU10Hqc6jd4RvrthNlDiE9U1tWmX7WRESftEDRosgxNsQG/Ze9YMRzHq"
-      crossorigin="anonymous"
-    ></script>
-    <script src="https://unpkg.com/htmx.org/dist/ext/json-enc.js"></script>
-  </body>
+
+
+  <script src="https://unpkg.com/htmx.org@2.0.3"
+    integrity="sha384-0895/pl2MU10Hqc6jd4RvrthNlDiE9U1tWmX7WRESftEDRosgxNsQG/Ze9YMRzHq"
+    crossorigin="anonymous"></script>
+  <script src="https://unpkg.com/htmx.org/dist/ext/json-enc.js"></script>
+</body>
+
 </html>
